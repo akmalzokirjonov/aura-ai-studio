@@ -1,6 +1,6 @@
 const API_BASE = "https://aihorde.net/api/v2";
 const CLIENT_AGENT =
-  "aura-studio:2.0:https://github.com/akmalzokirjonov/aura-studio";
+  "aura-studio:2.0:https://github.com/akmalzokirjonov/aura-ai-studio";
 // This is AI Horde's documented public anonymous credential, not a secret.
 const ANONYMOUS_KEY = "0000000000";
 const MODELS = {

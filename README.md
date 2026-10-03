@@ -1,66 +1,116 @@
-# AURA — Where imagination connects
+<div align="center">
 
-A responsive creative studio concept with a black-and-bronze palette, editorial typography, glass cards, and an interactive neural canvas.
+# AURA AI Studio
 
-**Live website:** https://akmalzokirjonov.github.io/aura-studio/
+### Where imagination connects.
 
-## Features
+A black-and-gold creative canvas with free AI image generation, thoughtful motion, and a responsive interface.
 
-- Responsive layout for phones, tablets, and desktops.
-- SVG connections between the main canvas and satellite cards, recalculated on resize.
-- Accessible studio dialogs with keyboard support and focus restoration.
-- Three curated visual directions with independent editable briefs.
-- Downloadable creative briefs and reference images.
-- Real image generation with Stable Diffusion and Deliberate through AI Horde.
-- Queue updates, cancellation, timeout handling, and downloadable AI results.
-- Monthly/yearly pricing toggle with an exact 20% annual discount.
-- Motion preview with a pause button and reduced-motion support.
-- Local fonts, reference images, and JavaScript. AI requests go directly to AI Horde only after the visitor submits a prompt.
+[![Live demo](https://img.shields.io/badge/Live_demo-Open_AURA-c9b8a0?style=for-the-badge&labelColor=171512)](https://akmalzokirjonov.github.io/aura-ai-studio/)
+[![Tests](https://github.com/akmalzokirjonov/aura-ai-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/akmalzokirjonov/aura-ai-studio/actions/workflows/ci.yml)
+[![JavaScript](https://img.shields.io/badge/JavaScript-Vanilla-f7df1e?style=flat-square&logo=javascript&logoColor=f7df1e&labelColor=171512)](app.js)
+[![Hosting](https://img.shields.io/badge/Hosted_on-GitHub_Pages-a78b71?style=flat-square&logo=github&labelColor=171512)](https://akmalzokirjonov.github.io/aura-ai-studio/)
 
-**Image generation is live and free.** It uses [AI Horde](https://github.com/Haidra-Org/AI-Horde), a volunteer service with anonymous access. No private API key, backend, registration, or payment is required. Availability and waiting time depend on volunteer workers; anonymous requests have low queue priority and can be restricted during heavy load. The studio submits one 512 × 512 image at a time and stops after ten minutes.
+[Explore the site](https://akmalzokirjonov.github.io/aura-ai-studio/) · [Run locally](#run-locally) · [How AI works](#free-ai-and-privacy)
 
-Before submitting, visitors must acknowledge that their prompts go to community workers and **anonymous generated images are shared with LAION for AI training**. This is a provider condition, not a toggle AURA can disable for anonymous requests. Avoid confidential prompts. AURA does not store drafts or generated images; download results before reloading. See the provider's [API documentation](https://aihorde.net/api/) and [privacy policy](https://aihorde.net/privacy/).
+</div>
 
-AI video generation, paid subscriptions, team collaboration, and email delivery remain concepts. The interface identifies reference previews and concept pricing. The digest form does not collect or transmit email addresses.
+![AURA homepage with an editorial headline, bronze sculpture, and connected creative cards](docs/preview-desktop.png)
+
+## Create something of your own
+
+Open the studio, describe an image, choose a model, and generate. AURA connects directly to AI Horde's volunteer network, then lets you download the result or save your creative brief.
+
+**No account, private API key, backend, or paid subscription is required for image generation.** Availability depends on volunteer workers and the anonymous queue.
+
+1. Open **[AURA](https://akmalzokirjonov.github.io/aura-ai-studio/)** and select **Open free studio**.
+2. Write a prompt and choose **Smart choice**, **Stable Diffusion**, or **Deliberate**.
+3. Read and acknowledge the provider's sharing terms, then select **Generate image**.
+4. Follow the queue status and download your image when it is ready.
+
+<details>
+<summary><strong>See a real AI-generated result in the studio</strong></summary>
+
+<br>
+
+![A real Stable Diffusion result displayed in AURA's studio](docs/preview-ai.png)
+
+This screenshot records a successful live request for a tree in a meadow. The studio received and displayed a 512 × 512 image from AI Horde. It is an example result, not a promise of queue speed or output quality.
+
+</details>
+
+## Inside the studio
+
+| Create | Explore |
+| --- | --- |
+| Real AI images through Stable Diffusion and Deliberate | A neural canvas with responsive SVG connections |
+| Live queue updates and request cancellation | Sculpture, landscape, and architecture references |
+| Download generated images and creative briefs | Glass cards, bronze accents, and editorial typography |
+| Keep separate prompts and results for each direction | Mobile layouts, keyboard navigation, and reduced motion |
+
+The site also includes a motion study, a monthly/yearly pricing preview, and an illustrated studio story. **Video generation, Pro/Studio subscriptions, team collaboration, and email delivery are presentation concepts.** The digest form does not collect email addresses.
 
 ## Run locally
 
-No build step or package installation is required. From this folder:
+The website has no runtime packages and needs no build step.
 
 ```sh
+git clone https://github.com/akmalzokirjonov/aura-ai-studio.git
+cd aura-ai-studio
 python -m http.server 4173 --bind 127.0.0.1
 ```
 
-Open http://127.0.0.1:4173/ in your browser.
+Open **[localhost:4173](http://127.0.0.1:4173/)**. Python 3 is used only to serve the static files; any static web server works.
 
-## Publish changes
+To run the automated tests with Node.js 20 or newer:
 
-GitHub Pages publishes the root of the `main` branch. Commit and push changes to update the live site automatically. `.nojekyll` keeps the site as plain static files. Relative asset URLs work under the `/aura-studio/` project path.
+```sh
+npm test
+```
 
-The same folder can also be deployed as a static site on Vercel, Netlify, or another static host without a framework or build command.
+No `npm install` is needed. Tests use Node's built-in test runner and simulated provider responses, so they do not consume volunteer GPU time. GitHub Actions runs the same checks on pushes and pull requests.
 
-## Files
+## Free AI and privacy
 
-| File          | Purpose                                                          |
-| ------------- | ---------------------------------------------------------------- |
-| `index.html`  | Semantic page, sections, and dialogs                             |
-| `styles.css`  | Design tokens, layouts, responsive styles, and motion            |
-| `app.js`      | Canvas connections, previews, downloads, navigation, and pricing |
-| `ai-horde.js` | AI request lifecycle, polling, cancellation, and provider errors |
-| `assets/`     | Locally hosted images, fonts, favicon, and font licenses         |
+AURA uses the [AI Horde API](https://aihorde.net/api/) with its [documented anonymous credential](https://github.com/Haidra-Org/AI-Horde#anonymous-usage). The public value `0000000000` is not a private secret. Never replace it with a personal API key in browser code or in this repository.
 
-## Artwork and fonts
+- **Community availability:** anonymous requests have low priority and can be restricted during high load. The studio requests one 512 × 512 image and stops waiting after ten minutes.
+- **Sharing acknowledgement:** prompts are processed by volunteer computers, and anonymous generated images are shared with LAION for AI training. Visitors must acknowledge this before any generation request is sent. Do not submit confidential prompts.
+- **Local drafts:** AURA adds no analytics, cookies, or browser storage. Drafts and generated results stay in the current tab until downloaded; reloading clears them. GitHub Pages and AI Horde apply their own hosting and privacy policies.
+- **Cancellation:** Cancel or close the studio to remove a pending request. If the network prevents confirmation, AURA says the provider may still finish it. Failed submissions are not automatically resubmitted.
 
-The bronze flower in `assets/sculpture.png` was created for this project using the built-in image generation tool. The generation brief is recorded in [ASSETS.md](ASSETS.md).
+Read [AI Horde's privacy policy](https://aihorde.net/privacy/) for the provider's terms. Model availability, moderation, and waiting times are controlled by the community service.
 
-Other images are illustrative photography from Unsplash, downloaded locally. They do not depict AURA employees or offices. Inter and Playfair Display are distributed under the SIL Open Font License; their licenses are included in `assets/`.
+## Project structure
 
-## Verification
+```text
+aura-ai-studio/
+├── index.html                 # Page sections and accessible dialogs
+├── styles.css                 # Theme, responsive layouts, and motion
+├── app.js                     # Studio interactions and UI state
+├── ai-horde.js                # Submit, poll, retrieve, and cancel AI jobs
+├── assets/                    # Local images, fonts, icons, and font licenses
+├── docs/                      # Actual website and generation screenshots
+├── tests/ai-horde.test.js      # Provider lifecycle and error handling tests
+└── .github/workflows/ci.yml    # Automated validation
+```
 
-Run `npm test` with Node.js 20 or newer. The tests have no dependencies and do not make real API calls. They cover completed generations, cancellation during submission, rate limits without duplicate submissions, unavailable workers, censored output, expiry, and timeouts.
+## Deployment and verification
 
-Checked in Chromium at 375, 390, 768, 1024, and 1440 pixel widths. Browser checks cover image/font loading, horizontal overflow, pricing calculations, scene changes, per-scene brief preservation, brief downloads, modal keyboard behavior and focus restoration, motion controls, mobile navigation, and reduced-motion behavior. No browser console errors were observed in the local checks.
+The **[live website](https://akmalzokirjonov.github.io/aura-ai-studio/)** is served from the root of `main` with GitHub Pages. Pushing to `main` publishes updates automatically. Relative asset paths support the repository subdirectory, and `.nojekyll` keeps deployment as plain static files.
 
-The public anonymous credential `0000000000` is documented by AI Horde and is intentionally included in the client. Never replace it with a personal secret in this public repository. Cancelling or closing the studio sends a DELETE for the active request; if a network failure prevents cancellation, the UI says that the provider may still finish it. Requests are never automatically resubmitted after POST errors.
+Nine automated tests cover successful generation, cancellation during submission, rate limits without duplicate jobs, rejected submissions, unavailable workers, censored results, timeouts, expired requests, and input validation. Browser checks also cover downloads, scene preservation, consent before submission, mobile navigation, dialog focus, and layouts from 320 to 1440 pixels. A live AI request and the GitHub Pages-to-provider connection have been verified.
 
-A real browser request to AI Horde successfully generated and displayed a 512 × 512 Stable Diffusion image. Separate simulated-provider browser tests cover consent before network submission, image downloading, preserving earlier results on errors, rate limits, cancellation, and 320–1440 pixel dialog layouts.
+## Artwork and credits
+
+The bronze flower artwork was generated for this project. Illustrative photography comes from Unsplash; typography uses Inter and Playfair Display with their SIL Open Font Licenses included. See **[ASSETS.md](ASSETS.md)** for image sources, the artwork prompt, and font credits. Studio photography does not depict actual AURA employees or offices.
+
+---
+
+<div align="center">
+
+Designed and built by **[Akmal Zokirjonov](https://github.com/akmalzokirjonov)**
+
+[Open AURA](https://akmalzokirjonov.github.io/aura-ai-studio/) · [Report an issue](https://github.com/akmalzokirjonov/aura-ai-studio/issues)
+
+</div>
